@@ -1,20 +1,21 @@
-// Step 1: Define the function `checkAnswer`
+// Function to check the user's answer
 function checkAnswer() {
-    // Step 2: Declare the correct answer
+    // Step 1: Define the correct answer
     const correctAnswer = "4";
 
-    // Step 3: Retrieve the user's selected answer
+    // Step 2: Retrieve the user's selected answer
     const userAnswer = document.querySelector('input[name="quiz"]:checked');
 
-    // Step 4: Check if the user selected an answer
+    // Step 3: Select the feedback element
     const feedbackElement = document.getElementById("feedback");
+
+    // Step 4: Validate and provide feedback
     if (!userAnswer) {
         feedbackElement.textContent = "Please select an answer before submitting.";
         feedbackElement.style.color = "red";
         return;
     }
 
-    // Step 5: Compare the user's answer with the correct answer
     if (userAnswer.value === correctAnswer) {
         feedbackElement.textContent = "Correct! Well done.";
         feedbackElement.style.color = "green";
@@ -24,5 +25,10 @@ function checkAnswer() {
     }
 }
 
-// Step 6: Add the event listener to the "Submit Answer" button
-document.getElementById("submit-answer").addEventListener("click", checkAnswer);
+// Attach the event listener to the submit button
+const submitButton = document.getElementById("submit-answer");
+if (submitButton) {
+    submitButton.addEventListener("click", checkAnswer);
+} else {
+    console.error("Submit button with ID 'submit-answer' not found!");
+}

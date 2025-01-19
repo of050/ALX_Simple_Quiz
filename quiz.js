@@ -1,34 +1,20 @@
-// Function to check the user's answer
 function checkAnswer() {
-    // Step 1: Define the correct answer
-    const correctAnswer = "4";
+    var correctAnswer = "4";
+    var userAnswer = document.querySelector('input[name="quiz"]:checked');
 
-    // Step 2: Retrieve the user's selected answer
-    const userAnswer = document.querySelector('input[name="quiz"]:checked');
-
-    // Step 3: Select the feedback element
-    const feedbackElement = document.getElementById("feedback");
-
-    // Step 4: Validate and provide feedback
-    if (!userAnswer) {
-        feedbackElement.textContent = "Please select an answer before submitting.";
-        feedbackElement.style.color = "red";
-        return;
-    }
-
-    if (userAnswer.value === correctAnswer) {
-        feedbackElement.textContent = "Correct! Well done.";
-        feedbackElement.style.color = "green";
+    if (userAnswer) {
+        userAnswer = userAnswer.value;
     } else {
-        feedbackElement.textContent = "That's incorrect. Try again!";
-        feedbackElement.style.color = "red";
+        document.getElementById('feedback').textContent = "Please select an answer.";
+        return; // Exit the function if no answer is selected
+    }
+
+    if (userAnswer === correctAnswer) {
+        document.getElementById('feedback').textContent = "Correct! Well done.";
+    } else {
+        document.getElementById('feedback').textContent = "That's incorrect. Try again!";
     }
 }
 
-// Attach the event listener to the submit button
-const submitButton = document.getElementById("submit-answer");
-if (submitButton) {
-    submitButton.addEventListener("click", checkAnswer);
-} else {
-    console.error("Submit button with ID 'submit-answer' not found!");
-}
+var submitButton = document.getElementById('submit-answer');
+submitButton.addEventListener('click', checkAnswer);
